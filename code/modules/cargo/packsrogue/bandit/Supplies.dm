@@ -13,6 +13,11 @@
 	cost = 2
 	contains = list(/obj/item/natural/cloth)
 
+/datum/supply_pack/rogue/Supplies/loannote
+	name = "Unmarked Loan Note"
+	cost = 5
+	contains = list(/obj/item/loan_note/coin)
+
 /datum/supply_pack/rogue/Supplies/rope
 	name = "Rope"
 	cost = 5

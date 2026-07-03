@@ -272,6 +272,8 @@
 	held_items[/obj/item/reagent_containers/glass/bottle/alchemical/fermented_crab] = list("PRICE" = rand(50,70), "NAME" = "fermented crab")
 	// azure peak addition end
 	held_items[/obj/item/reagent_containers/glass/bottle/rogue/emberwine] = list("PRICE" = rand(100,140),"NAME" = "unlabeled emberwine")
+	held_items[/obj/item/loan_note] = list("PRICE" = 5, "NAME" = "blank loan note")
+	held_items[/obj/item/loan_note/coin] = list("PRICE" = 10, "NAME" = "unmarked loan note")
 
 #undef DRUGRADE_MONEYA
 #undef DRUGRADE_MONEYB

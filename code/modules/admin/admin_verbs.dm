@@ -225,6 +225,8 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/datum/admins/proc/create_or_modify_area,
 	/client/proc/returntolobby,
 	/client/proc/set_tod_override,
+	/client/proc/advance_debt_day,
+	/client/proc/advance_trade_market,
 	/client/proc/stresstest_chat,
 	/client/proc/performance_stress_test, // Uncomment these if you tick the performance stress test .dm file
 	/client/proc/cleanup_stress_test_mobs
@@ -507,6 +509,21 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		GLOB.todoverride = null
 		world << "[ckey] has disabled the time of day override."
 	settod()
+
+/client/proc/advance_debt_day()
+	set category = "Debug"
+	set name = "AdvanceDebtDay"
+	accrue_loan_interest()
+	message_admins("[key_name_admin(usr)] advanced all loans by one day.")
+
+/client/proc/advance_trade_market()
+	set category = "Debug"
+	set name = "AdvanceTradeMarket"
+	GLOB.trade_market.next_tick = 0
+	for(var/datum/trade_venture/venture in GLOB.trade_market.ventures)
+		venture.next_dividend = world.time // maybe_tick banks exactly one dividend period
+	GLOB.trade_market.maybe_tick()
+	message_admins("[key_name_admin(usr)] advanced the trade ventures market.")
 
 /client/proc/stresstest_chat()
 	set name = "Stress Chat"

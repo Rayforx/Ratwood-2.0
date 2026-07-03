@@ -107,3 +107,8 @@
 	name = "Golden Hairpin"
 	cost = 100
 	contains = list(/obj/item/lockpick/goldpin)
+
+/datum/supply_pack/rogue/blackmarket_diplomacy/loannote
+	name = "Unmarked Loan Note"
+	cost = 10
+	contains = list(/obj/item/loan_note/coin)

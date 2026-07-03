@@ -6,6 +6,7 @@
 #define TAB_LOG 6
 #define TAB_STATISTICS 7
 #define TAB_PAYDAY 8
+#define TAB_DEBTS 9
 
 /obj/structure/roguemachine/steward
 	name = "nerve master"
@@ -404,6 +405,7 @@
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_PAYDAY]'>\[Daily Payments\]</a><BR>"
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_LOG]'>\[Log\]</a><BR>"
 			contents += "<a href='?src=\ref[src];switchtab=[TAB_STATISTICS]'>\[Statistics\]</a><BR>"
+			contents += "<a href='?src=\ref[src];switchtab=[TAB_DEBTS]'>\[Debts\]</a><BR>"
 			contents += "</center>"
 		if(TAB_BANK)
 			var/total_deposit = 0
@@ -581,6 +583,30 @@
 					contents += " <a href='?src=\ref[src];removedailypay=[job_name]'>\[Remove\]</a><BR>"
 			else
 				contents += "<center>No daily payments configured.</center><BR>"
+		if(TAB_DEBTS)
+			contents += "<a href='?src=\ref[src];switchtab=[TAB_MAIN]'>\[Return\]</a><BR>"
+			contents += "<center>Debts of the Realm<BR>"
+			contents += "--------------</center><BR>"
+			var/total_outstanding = 0
+			var/debt_rows = ""
+			for(var/datum/loan/loan in GLOB.loan_ledger)
+				if(loan.off_the_books) // unmarked notes never reach the steward's ledger
+					continue
+				if(loan.paid)
+					debt_rows += "<s>[loan.debtor_name] owed [loan.principal]m to [loan.creditor_name]</s> - PAID IN FULL<BR>"
+				else
+					total_outstanding += loan.owed
+					debt_rows += "<b>[loan.debtor_name]</b> owes <b>[loan.owed]m</b> (borrowed [loan.principal]m, +[loan.interest_rate]%/day) to [loan.creditor_name]"
+					if(loan.clauses_fired)
+						debt_rows += " <b>- IN DEFAULT, clauses in force[loan.punish_forever ? " forever" : ""]</b>"
+					else if(loan.is_overdue())
+						debt_rows += " <b>- OVERDUE</b>"
+					debt_rows += "<BR>"
+			if(!length(debt_rows))
+				contents += "<center>No debts are recorded.</center><BR>"
+			else
+				contents += debt_rows
+				contents += "<BR><center>Total Outstanding: [total_outstanding]m</center><BR>"
 
 	if(!canread)
 		contents = stars(contents)
@@ -610,3 +636,4 @@
 #undef TAB_LOG
 #undef TAB_STATISTICS
 #undef TAB_PAYDAY
+#undef TAB_DEBTS

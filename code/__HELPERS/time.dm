@@ -56,6 +56,7 @@ GLOBAL_VAR_INIT(dayspassed, FALSE)
 				GLOB.dayspassed = 1
 			SStreasury.distribute_estate_incomes()
 			SStreasury.distribute_daily_payments()
+			accrue_loan_interest()
 		for(var/mob/living/player in GLOB.mob_list)
 			if(player.stat != DEAD && player.client)
 				player.do_time_change()

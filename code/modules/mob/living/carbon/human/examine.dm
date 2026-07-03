@@ -204,6 +204,11 @@
 				. += span_notice("A fellow noble.")
 			else
 				. += span_notice("A noble!")
+		// Debtor's brand clause message; the wording is set by the creditor on the contract
+		if(HAS_TRAIT(src, TRAIT_DEBT_BRANDED))
+			for(var/brand_line in get_debt_brand_lines(real_name))
+				. += span_warning(brand_line)
+
 		// Leashed pet status effect message
 		if(has_status_effect(/datum/status_effect/leash_pet))
 			. += span_warning("A leash is hooked to their collar. They are being led like a pet.")

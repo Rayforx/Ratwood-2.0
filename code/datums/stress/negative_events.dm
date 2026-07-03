@@ -34,6 +34,11 @@
 /datum/stressevent/vice/godfearing
 	desc = list(span_boldred("Time to pray to my Patron."),span_boldred("I need to visit my Patron's realm."))
 
+/datum/stressevent/debt_oath
+	timer = INFINITY
+	stressadd = 2
+	desc = span_red("A debt hangs over me. The oath I signed weighs on my conscience.")
+
 /datum/stressevent/chastity_frustration
 	timer = INFINITY
 	stressadd = 1

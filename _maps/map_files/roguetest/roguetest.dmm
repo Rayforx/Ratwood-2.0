@@ -686,6 +686,10 @@
 /obj/item/quiver/bolts,
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors)
+"uj" = (
+/obj/structure/chair/arrestchair,
+/turf/open/floor/rogue/grass,
+/area/rogue/indoors)
 "uk" = (
 /obj/structure/table/wood{
 	dir = 1;
@@ -1115,6 +1119,7 @@
 /area/rogue/under/cave)
 "Ew" = (
 /obj/structure/roguemachine/stockpile,
+/obj/structure/roguemachine/drugmachine,
 /turf/open/floor/rogue/grass,
 /area/rogue/indoors)
 "Ey" = (
@@ -1176,6 +1181,10 @@
 /obj/machinery/light/rogue/candle/blue,
 /obj/structure/fluff/ceramicswheel,
 /turf/open/floor/rogue/blocks/stonered/tiny,
+/area/rogue/indoors)
+"Hx" = (
+/obj/structure/roguemachine/blackmarket,
+/turf/closed/wall/mineral/rogue/decowood/vert,
 /area/rogue/indoors)
 "HT" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/chicken{
@@ -1457,6 +1466,23 @@
 /area/rogue/indoors)
 "OQ" = (
 /obj/structure/table/cooling,
+/obj/item/natural/feather,
+/obj/item/loan_note,
+/obj/item/loan_note,
+/obj/item/loan_note,
+/obj/item/loan_note,
+/obj/item/loan_note,
+/obj/item/loan_note,
+/obj/item/loan_note,
+/obj/item/loan_note,
+/obj/item/loan_note,
+/obj/item/loan_note/coin,
+/obj/item/loan_note/coin,
+/obj/item/loan_note/coin,
+/obj/item/roguecoin/gold/pile,
+/obj/item/roguecoin/gold/pile,
+/obj/item/roguecoin/gold/pile,
+/obj/item/roguecoin/gold/pile,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors)
 "Pc" = (
@@ -1584,6 +1610,10 @@
 /obj/item/natural/bundle/fibers/full,
 /obj/item/natural/bundle/fibers/full,
 /turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors)
+"TI" = (
+/obj/structure/roguemachine/bounty,
+/turf/open/floor/rogue/grass,
 /area/rogue/indoors)
 "TN" = (
 /turf/closed/wall/mineral/rogue/stonebrick,
@@ -1737,6 +1767,10 @@
 /obj/machinery/light/roguestreet/orange/midlamp,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors)
+"YB" = (
+/obj/item/tradeventures_kit,
+/turf/open/floor/rogue/grass,
+/area/rogue/outdoors)
 "YX" = (
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors)
@@ -1871,7 +1905,7 @@ aF
 zo
 WY
 zo
-zo
+Hx
 Ey
 tc
 Ey
@@ -3225,7 +3259,7 @@ CZ
 yK
 yK
 rT
-vq
+YB
 rT
 rT
 rT
@@ -3485,7 +3519,7 @@ tg
 CZ
 CZ
 CZ
-AX
+uj
 rT
 rT
 rT
@@ -3537,7 +3571,7 @@ SE
 CZ
 CZ
 CZ
-AX
+TI
 rT
 rT
 rT

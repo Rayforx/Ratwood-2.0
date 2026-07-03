@@ -111,6 +111,41 @@
 
 /obj/structure/roguemachine/atm/attackby(obj/item/P, mob/user, params)
 	if(ishuman(user))
+		if(istype(P, /obj/item/venture_certificate))
+			var/obj/item/venture_certificate/cert = P
+			var/mob/living/carbon/human/human_user = user
+			if(HAS_TRAIT(human_user, TRAIT_OUTLAW))
+				to_chat(human_user, span_warning("The machine rejects you, sensing your status as an outlaw in these lands."))
+				return
+			GLOB.trade_market.maybe_tick()
+			var/datum/trade_venture/venture = cert.get_venture()
+			if(!venture)
+				say("This paper is worthless.")
+				playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
+				return
+			var/sale_quote = venture.current_price // honor the price shown, not one re-rolled during the prompt
+			var/list/options = list("Collect Interest ([cert.get_accrued()]m)", "Sell ([sale_quote]m)")
+			var/selection = input(human_user, "The exchange honors this stake in [venture.name]. Choose how to redeem it.", src) as null|anything in options
+			if(!selection)
+				return
+			if(QDELETED(src) || QDELETED(cert) || cert.loc != human_user || !Adjacent(human_user))
+				return
+			if(findtext(selection, "Collect"))
+				var/amount = cert.redeem_interest()
+				if(amount < 1)
+					say("No interest has accrued yet.")
+					return
+				say("Paid [amount] mammon in interest on [venture.name].")
+				playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
+				budget2change(amount, human_user)
+			else if(findtext(selection, "Sell"))
+				cert.redeem_sale() // retire the outstanding share; the payout is the pinned sale_quote
+				qdel(cert)
+				say("Sold your stake in [venture.name] for [sale_quote] mammon.")
+				playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
+				budget2change(sale_quote, human_user)
+			return
+
 		if(istype(P, /obj/item/roguecoin/gilbranze))
 			return
 
